@@ -4,7 +4,7 @@ from telegram.ext import ApplicationBuilder, ContextTypes, CommandHandler, Conve
 from google.oauth2 import service_account
 from googleapiclient.discovery import build
 from datetime import datetime
-from bot_key import bot_key
+from bot_key import bot_key,sheet_id
 
 # Thêm logging ở đầu file, sau phần import
 logging.basicConfig(
@@ -20,7 +20,7 @@ INPUT_NAME, CHOOSE_DATE, CONFIRM_DAYOFF, INPUT_SUBSTITUTE = range(4)
 # Thiết lập Google Sheets API
 SCOPES = ['https://www.googleapis.com/auth/spreadsheets']
 SERVICE_ACCOUNT_FILE = 'credentials.json'
-SPREADSHEET_ID = '1FTItLCPJ7HlV11HJj0W6F5kpitMFxTgoQNnO9yTauRc'
+SPREADSHEET_ID = sheet_id
 RANGE_NAME = "'Trang tính1'!A2:H"
 
 credentials = service_account.Credentials.from_service_account_file(
