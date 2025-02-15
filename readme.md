@@ -115,31 +115,42 @@ sheet_id = "YOUR_SHEET_ID"
 7. Hiển thị menu chính
 
 ```mermaid
-flowchart TB
+fflowchart TB
     subgraph Left["LUỒNG CHÍNH"]
+        direction TB
         subgraph Menu["MENU CHÍNH"]
-            A[NGƯỜI DÙNG] --> B{/START}
-            B --> C[XEM LỊCH]
-            B --> D[BÁO NGHỈ]
+            A["NGƯỜI DÙNG"] --> B["/START"]
+            B --> C["XEM LỊCH"]
+            B --> D["BÁO NGHỈ"]
         end
 
         subgraph Process["XỬ LÝ"]
-            C --> C1[NHẬP TÊN] --> C2[HIỂN THỊ] --> C3{BÁO NGHỈ?}
-            D --> E[NHẬP TÊN] --> F[NHẬP NGÀY] --> G{KIỂM TRA}
+            direction TB
+            C --> C1["NHẬP TÊN"] --> C2["HIỂN THỊ"] --> C3{"BÁO NGHỈ?"}
+            D --> E["NHẬP TÊN"] --> F["NHẬP NGÀY"] --> G{"KIỂM TRA"}
         end
 
         subgraph Actions["HÀNH ĐỘNG"]
-            G --> |1 CA| H[XÁC NHẬN]
-            G --> |NHIỀU| I[CHỌN CA] --> H
-            H --> |OK| J[GV THAY] --> K[CẬP NHẬT] --> B
+            direction TB
+            G --> |"1 CA"| H["XÁC NHẬN"]
+            G --> |"NHIỀU"| I["CHỌN CA"] --> H
+            H --> |"OK"| J["GV THAY"] --> K["CẬP NHẬT"] --> B
         end
 
-        Z[KẾT THÚC]
-        C3 --> |CÓ| F
-        C3 --> |KHÔNG| Z
-        G --> |KHÔNG| Z
-        H --> |HỦY| Z
+        Z["KẾT THÚC"]
+        C3 --> |"CÓ"| F
+        C3 --> |"KHÔNG"| Z
+        G --> |"KHÔNG"| Z
+        H --> |"HỦY"| Z
     end
+
+    classDef default fill:#f9f,stroke:#333,stroke-width:4px;
+    classDef process fill:#bbf,stroke:#333,stroke-width:4px;
+    classDef action fill:#bfb,stroke:#333,stroke-width:4px;
+    
+    class A,B,C,D default;
+    class C1,C2,C3,E,F,G process;
+    class H,I,J,K,Z action;
 ```
 
 ## 📚 Cấu Trúc Dữ Liệu
