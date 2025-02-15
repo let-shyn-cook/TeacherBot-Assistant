@@ -123,7 +123,6 @@ flowchart TB
             B --> C[Xem lịch dạy]
             B --> D[Báo nghỉ]
         end
-        C --> C1[Nhập tên GV]
         subgraph Actions["Hành Động"]
             direction TB
             G --> |1 ca| H[Xác nhận]
@@ -134,7 +133,7 @@ flowchart TB
             K --> B
         end
     end
-        I --> H
+
     subgraph Process["Xử Lý"]
         direction TB
         C --> C1[Nhập tên GV]
@@ -144,7 +143,7 @@ flowchart TB
         C2 --> C3{Muốn báo nghỉ?}
         F --> G{Kiểm tra lịch}
     end
-    C3 --> |Không| Z[Kết thúc]
+
     C3 --> |Có| F
     C3 --> |Không| Z[Kết thúc]
     G --> |Không có| Z
