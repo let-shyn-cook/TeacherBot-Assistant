@@ -117,7 +117,6 @@ sheet_id = "YOUR_SHEET_ID"
 ```mermaid
 flowchart TB
     subgraph Left["Luồng Chính"]
-        direction TB
         subgraph Menu["Menu Chính"]
             A[Người dùng] --> B{/start}
             B --> C[Xem lịch dạy]
@@ -129,11 +128,13 @@ flowchart TB
             H --> |ok| J[Nhập GV thay] --> K[Cập nhật sheets] --> B
         end
     end
+
     subgraph Process["Xử Lý"]
         direction TB
         C --> C1[Nhập tên GV] --> C2[Hiển thị lịch] --> C3{Muốn báo nghỉ?}
         D --> E[Nhập tên GV] --> F[Nhập ngày nghỉ] --> G{Kiểm tra lịch}
     end
+
     C3 --> |Có| F
     C3 --> |Không| Z[Kết thúc]
     G --> |Không có| Z
