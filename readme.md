@@ -115,42 +115,40 @@ sheet_id = "YOUR_SHEET_ID"
 7. Hiển thị menu chính
 
 ```mermaid
-flowchart LR
+flowchart TB
     subgraph Menu["Menu Chính"]
+        direction LR
         A[Người dùng] --> B{/start}
         B --> C[Xem lịch dạy]
         B --> D[Báo nghỉ]
     end
 
-    subgraph Calendar["Xem Lịch"]
+    subgraph Process["Xử Lý"]
+        direction LR
         C --> C1[Nhập tên GV]
+        D --> E[Nhập tên GV]
+        
         C1 --> C2[Hiển thị lịch]
+        E --> F[Nhập ngày nghỉ]
+        
         C2 --> C3{Muốn báo nghỉ?}
+        F --> G{Kiểm tra lịch}
     end
 
-    subgraph DayOff["Báo Nghỉ"]
-        D --> E[Nhập tên GV]
-        E --> F[Nhập ngày nghỉ]
-        F --> G{Kiểm tra lịch}
+    subgraph Actions["Hành Động"]
+        direction LR
         G --> |1 ca| H[Xác nhận]
         G --> |Nhiều ca| I[Chọn ca]
         I --> H
-    end
-
-    subgraph Confirm["Xác Nhận & Cập Nhật"]
         H --> |ok| J[Nhập GV thay]
         J --> K[Cập nhật sheets]
-        K --> L[Menu chính]
     end
 
     C3 --> |Có| F
     C3 --> |Không| Z[Kết thúc]
     G --> |Không có| Z
     H --> |hủy| Z
-
-    Menu --> Calendar
-    Calendar --> DayOff
-    DayOff --> Confirm
+    K --> B
 ```
 
 ## 📚 Cấu Trúc Dữ Liệu
