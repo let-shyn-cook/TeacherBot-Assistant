@@ -115,7 +115,7 @@ sheet_id = "YOUR_SHEET_ID"
 7. Hiển thị menu chính
 
 ```mermaid
-flowchart TD
+flowchart LR
     subgraph Menu["Menu Chính"]
         A[Người dùng] --> B{/start}
         B --> C[Xem lịch dạy]
@@ -147,6 +147,10 @@ flowchart TD
     C3 --> |Không| Z[Kết thúc]
     G --> |Không có| Z
     H --> |hủy| Z
+
+    Menu --> Calendar
+    Calendar --> DayOff
+    DayOff --> Confirm
 ```
 
 ## 📚 Cấu Trúc Dữ Liệu
