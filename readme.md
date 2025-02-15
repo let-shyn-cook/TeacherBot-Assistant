@@ -68,24 +68,73 @@ bot_key = "YOUR_BOT_TOKEN"
 sheet_id = "YOUR_SHEET_ID"
 ```
 
-## 🔄 Luồng Hoạt Động
+## 🔄 Luồng Hoạt Động Chi Tiết
 
 <div align="center">
   <img src="https://i.imgur.com/dBaSKWF.gif" height="20" width="100%">
 </div>
 
+### 1. Khởi động Bot
+- Gửi lệnh `/start` 
+- Bot hiển thị menu với 2 lựa chọn:
+  + Xem lịch dạy
+  + Báo nghỉ
+
+### 2. Xem lịch dạy
+1. Chọn "Xem lịch dạy"
+2. Nhập tên giáo viên
+3. Bot hiển thị thông tin:
+   - Ngày
+   - Ca dạy
+   - Môn học
+   - Lớp
+   - Phòng
+   - Trạng thái
+   - GV dạy thay (nếu có)
+4. Bot hỏi "Bạn có muốn báo nghỉ không?"
+   - Nếu chọn "Có" -> Chuyển sang luồng báo nghỉ
+   - Nếu chọn "Không" -> Kết thúc
+
+### 3. Báo nghỉ
+1. Chọn "Báo nghỉ" hoặc "Có" từ xem lịch
+2. Nếu chưa có tên:
+   - Nhập tên giáo viên
+3. Nhập ngày muốn nghỉ (DD/MM/YYYY)
+4. Bot kiểm tra lịch dạy:
+   - Nếu không có -> Thông báo và kết thúc
+   - Nếu có 1 ca -> Hiển thị thông tin và yêu cầu xác nhận
+   - Nếu có nhiều ca -> Hiển thị danh sách để chọn
+5. Xác nhận nghỉ:
+   - Gõ "ok" để xác nhận
+   - Gõ bất kỳ để hủy
+6. Nếu xác nhận:
+   - Nhập tên giáo viên dạy thay
+   - Bot cập nhật Google Sheets:
+     + Trạng thái: "Báo nghỉ"
+     + GV dạy thay: [Tên GV mới]
+7. Hiển thị menu chính
+
 ```mermaid
 flowchart TD
-    A[Người dùng] --> B{Bot Telegram}
-    B --> C[Xem lịch dạy]
-    B --> D[Báo nghỉ]
-    C --> E[Google Sheets API]
-    D --> F[Nhập ngày nghỉ]
-    F --> G[Chọn ca nghỉ]
-    G --> H[Xác nhận]
-    H --> I[Nhập GV dạy thay]
-    I --> E
-    E --> J[(Database)]
+A[Người dùng] --> B{/start}
+B --> C[Xem lịch dạy]
+B --> D[Báo nghỉ]
+C --> C1[Nhập tên GV]
+C1 --> C2[Hiển thị lịch]
+C2 --> C3{Muốn báo nghỉ?}
+C3 -->|Có| E
+C3 -->|Không| Z[Kết thúc]
+D --> E[Nhập tên GV]
+E --> F[Nhập ngày nghỉ]
+F --> G{Kiểm tra lịch}
+G -->|Không có| Z
+G -->|1 ca| H[Xác nhận]
+G -->|Nhiều ca| I[Chọn ca]
+I --> H
+H -->|ok| J[Nhập GV thay]
+H -->|hủy| Z
+J --> K[Cập nhật sheets]
+K --> L[Menu chính]
 ```
 
 ## 📚 Cấu Trúc Dữ Liệu

@@ -1,2 +1,2 @@
-bot_key = "add you bot key here"
-sheet_id = "add your sheet id here"
+bot_key = "8028862517:AAFTTNzAdza9CU7p_DsfZQoTKlvqDWAJv4A"
+sheet_id = "1FTItLCPJ7HlV11HJj0W6F5kpitMFxTgoQNnO9yTauRc"
