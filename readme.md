@@ -115,24 +115,12 @@ sheet_id = "YOUR_SHEET_ID"
 7. Hiển thị menu chính
 
 ```mermaid
-flowchart TB
+flowchart LR
     subgraph Menu["Menu Chính"]
         direction LR
         A[Người dùng] --> B{/start}
         B --> C[Xem lịch dạy]
         B --> D[Báo nghỉ]
-    end
-
-    subgraph Process["Xử Lý"]
-        direction LR
-        C --> C1[Nhập tên GV]
-        D --> E[Nhập tên GV]
-        
-        C1 --> C2[Hiển thị lịch]
-        E --> F[Nhập ngày nghỉ]
-        
-        C2 --> C3{Muốn báo nghỉ?}
-        F --> G{Kiểm tra lịch}
     end
 
     subgraph Actions["Hành Động"]
@@ -144,68 +132,19 @@ flowchart TB
         J --> K[Cập nhật sheets]
     end
 
+    subgraph Process["Xử Lý"]
+        direction TB
+        C --> C1[Nhập tên GV]
+        D --> E[Nhập tên GV]
+        C1 --> C2[Hiển thị lịch]
+        E --> F[Nhập ngày nghỉ]
+        C2 --> C3{Muốn báo nghỉ?}
+        F --> G{Kiểm tra lịch}
+    end
+
     C3 --> |Có| F
     C3 --> |Không| Z[Kết thúc]
     G --> |Không có| Z
     H --> |hủy| Z
     K --> B
 ```
-
-## 📚 Cấu Trúc Dữ Liệu
-
-<div align="center">
-  <img src="https://i.imgur.com/dBaSKWF.gif" height="20" width="100%">
-</div>
-
-| Cột | Mô tả |
-|-----|--------|
-| A | Ngày |
-| B | Ca dạy |
-| C | Môn học |
-| D | Lớp |
-| E | Phòng |
-| F | Giáo viên |
-| G | Trạng thái |
-| H | GV dạy thay |
-
-## 🚀 Sử dụng
-
-<div align="center">
-  <img src="https://i.imgur.com/dBaSKWF.gif" height="20" width="100%">
-</div>
-
-1. Khởi động bot:
-```bash
-python main.py
-```
-
-2. Tương tác với bot qua Telegram:
-- `/start` - Bắt đầu
-- Chọn "Xem lịch dạy" hoặc "Báo nghỉ"
-- Làm theo hướng dẫn của bot
-
-## 🤝 Đóng góp
-
-<div align="center">
-  <img src="https://i.imgur.com/dBaSKWF.gif" height="20" width="100%">
-</div>
-
-1. Fork project
-2. Tạo branch mới (`git checkout -b feature/AmazingFeature`)
-3. Commit thay đổi (`git commit -m 'Add some AmazingFeature'`)
-4. Push to branch (`git push origin feature/AmazingFeature`)
-5. Tạo Pull Request
-
-## 📝 License
-
-<div align="center">
-  <img src="https://i.imgur.com/dBaSKWF.gif" height="20" width="100%">
-</div>
-
-MIT License - Xem [LICENSE](LICENSE) để biết thêm chi tiết
-
----
-<div align="center">
-  Made with ❤️ by Shyn
-  <img src="https://i.imgur.com/dBaSKWF.gif" height="20" width="100%">
-</div>
