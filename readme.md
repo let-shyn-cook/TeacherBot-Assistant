@@ -116,26 +116,37 @@ sheet_id = "YOUR_SHEET_ID"
 
 ```mermaid
 flowchart TD
-A[Người dùng] --> B{/start}
-B --> C[Xem lịch dạy]
-B --> D[Báo nghỉ]
-C --> C1[Nhập tên GV]
-C1 --> C2[Hiển thị lịch]
-C2 --> C3{Muốn báo nghỉ?}
-C3 -->|Có| E
-C3 -->|Không| Z[Kết thúc]
-D --> E[Nhập tên GV]
-E --> F[Nhập ngày nghỉ]
-F --> G{Kiểm tra lịch}
-G -->|Không có| Z
-G -->|1 ca| H[Xác nhận]
-G -->|Nhiều ca| I[Chọn ca]
-I --> H
-H -->|ok| J[Nhập GV thay]
-H -->|hủy| Z
-J --> K[Cập nhật sheets]
-K --> L[Menu chính]
-```
+    subgraph Menu["Menu Chính"]
+        A[Người dùng] --> B{/start}
+        B --> C[Xem lịch dạy]
+        B --> D[Báo nghỉ]
+    end
+
+    subgraph Calendar["Xem Lịch"]
+        C --> C1[Nhập tên GV]
+        C1 --> C2[Hiển thị lịch]
+        C2 --> C3{Muốn báo nghỉ?}
+    end
+
+    subgraph DayOff["Báo Nghỉ"]
+        D --> E[Nhập tên GV]
+        E --> F[Nhập ngày nghỉ]
+        F --> G{Kiểm tra lịch}
+        G --> |1 ca| H[Xác nhận]
+        G --> |Nhiều ca| I[Chọn ca]
+        I --> H
+    end
+
+    subgraph Confirm["Xác Nhận & Cập Nhật"]
+        H --> |ok| J[Nhập GV thay]
+        J --> K[Cập nhật sheets]
+        K --> L[Menu chính]
+    end
+
+    C3 --> |Có| F
+    C3 --> |Không| Z[Kết thúc]
+    G --> |Không có| Z
+    H --> |hủy| Z
 
 ## 📚 Cấu Trúc Dữ Liệu
 
