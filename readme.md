@@ -124,24 +124,16 @@ flowchart TB
             B --> D[Báo nghỉ]
         end
         subgraph Actions["Hành Động"]
-            direction TB
             G --> |1 ca| H[Xác nhận]
-            G --> |Nhiều ca| I[Chọn ca]
-            I --> H
-            H --> |ok| J[Nhập GV thay]
-            J --> K[Cập nhật sheets]
-            K --> B
+            G --> |Nhiều ca| I[Chọn ca] --> H
+            H --> |ok| J[Nhập GV thay] --> K[Cập nhật sheets] --> B
         end
     end
 
     subgraph Process["Xử Lý"]
         direction TB
-        C --> C1[Nhập tên GV]
-        D --> E[Nhập tên GV]
-        C1 --> C2[Hiển thị lịch]
-        E --> F[Nhập ngày nghỉ]
-        C2 --> C3{Muốn báo nghỉ?}
-        F --> G{Kiểm tra lịch}
+        C --> C1[Nhập tên GV] --> C2[Hiển thị lịch] --> C3{Muốn báo nghỉ?}
+        D --> E[Nhập tên GV] --> F[Nhập ngày nghỉ] --> G{Kiểm tra lịch}
     end
 
     C3 --> |Có| F
