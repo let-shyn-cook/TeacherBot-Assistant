@@ -115,21 +115,23 @@ sheet_id = "YOUR_SHEET_ID"
 7. Hiển thị menu chính
 
 ```mermaid
-flowchart LR
-    subgraph Menu["Menu Chính"]
-        direction LR
-        A[Người dùng] --> B{/start}
-        B --> C[Xem lịch dạy]
-        B --> D[Báo nghỉ]
-    end
+flowchart TB
+    subgraph Left["Luồng Chính"]
+        direction TB
+        subgraph Menu["Menu Chính"]
+            A[Người dùng] --> B{/start}
+            B --> C[Xem lịch dạy]
+            B --> D[Báo nghỉ]
+        end
 
-    subgraph Actions["Hành Động"]
-        direction LR
-        G --> |1 ca| H[Xác nhận]
-        G --> |Nhiều ca| I[Chọn ca]
-        I --> H
-        H --> |ok| J[Nhập GV thay]
-        J --> K[Cập nhật sheets]
+        subgraph Actions["Hành Động"]
+            G --> |1 ca| H[Xác nhận]
+            G --> |Nhiều ca| I[Chọn ca]
+            I --> H
+            H --> |ok| J[Nhập GV thay]
+            J --> K[Cập nhật sheets]
+            K --> B
+        end
     end
 
     subgraph Process["Xử Lý"]
@@ -146,5 +148,62 @@ flowchart LR
     C3 --> |Không| Z[Kết thúc]
     G --> |Không có| Z
     H --> |hủy| Z
-    K --> B
 ```
+## 📚 Cấu Trúc Dữ Liệu
+
+<div align="center">
+  <img src="https://i.imgur.com/dBaSKWF.gif" height="20" width="100%">
+</div>
+
+| Cột | Mô tả |
+|-----|--------|
+| A | Ngày |
+| B | Ca dạy |
+| C | Môn học |
+| D | Lớp |
+| E | Phòng |
+| F | Giáo viên |
+| G | Trạng thái |
+| H | GV dạy thay |
+
+## 🚀 Sử dụng
+
+<div align="center">
+  <img src="https://i.imgur.com/dBaSKWF.gif" height="20" width="100%">
+</div>
+
+1. Khởi động bot:
+```bash
+python main.py
+```
+
+2. Tương tác với bot qua Telegram:
+- `/start` - Bắt đầu
+- Chọn "Xem lịch dạy" hoặc "Báo nghỉ"
+- Làm theo hướng dẫn của bot
+
+## 🤝 Đóng góp
+
+<div align="center">
+  <img src="https://i.imgur.com/dBaSKWF.gif" height="20" width="100%">
+</div>
+
+1. Fork project
+2. Tạo branch mới (`git checkout -b feature/AmazingFeature`)
+3. Commit thay đổi (`git commit -m 'Add some AmazingFeature'`)
+4. Push to branch (`git push origin feature/AmazingFeature`)
+5. Tạo Pull Request
+
+## 📝 License
+
+<div align="center">
+  <img src="https://i.imgur.com/dBaSKWF.gif" height="20" width="100%">
+</div>
+
+MIT License - Xem [LICENSE](LICENSE) để biết thêm chi tiết
+
+---
+<div align="center">
+  Made with ❤️ by Shyn
+  <img src="https://i.imgur.com/dBaSKWF.gif" height="20" width="100%">
+</div>
