@@ -116,29 +116,30 @@ sheet_id = "YOUR_SHEET_ID"
 
 ```mermaid
 flowchart TB
-    subgraph Left["Luồng Chính"]
-        subgraph Menu["Menu Chính"]
-            A[Người dùng] --> B{/start}
-            B --> C[Xem lịch dạy]
-            B --> D[Báo nghỉ]
+    subgraph Left["LUỒNG CHÍNH"]
+        subgraph Menu["MENU CHÍNH"]
+            A[NGƯỜI DÙNG] --> B{/START}
+            B --> C[XEM LỊCH]
+            B --> D[BÁO NGHỈ]
         end
 
-        subgraph Process["Xử Lý"]
-            C --> C1[Nhập tên GV] --> C2[Hiển thị lịch] --> C3{Muốn báo nghỉ?}
-            D --> E[Nhập tên GV] --> F[Nhập ngày nghỉ] --> G{Kiểm tra lịch}
+        subgraph Process["XỬ LÝ"]
+            C --> C1[NHẬP TÊN] --> C2[HIỂN THỊ] --> C3{BÁO NGHỈ?}
+            D --> E[NHẬP TÊN] --> F[NHẬP NGÀY] --> G{KIỂM TRA}
         end
 
-        subgraph Actions["Hành Động"]
-            G --> |1 ca| H[Xác nhận]
-            G --> |Nhiều ca| I[Chọn ca] --> H
-            H --> |ok| J[Nhập GV thay] --> K[Cập nhật sheets] --> B
+        subgraph Actions["HÀNH ĐỘNG"]
+            G --> |1 CA| H[XÁC NHẬN]
+            G --> |NHIỀU| I[CHỌN CA] --> H
+            H --> |OK| J[GV THAY] --> K[CẬP NHẬT] --> B
         end
+
+        Z[KẾT THÚC]
+        C3 --> |CÓ| F
+        C3 --> |KHÔNG| Z
+        G --> |KHÔNG| Z
+        H --> |HỦY| Z
     end
-
-    C3 --> |Có| F
-    C3 --> |Không| Z[Kết thúc]
-    G --> |Không có| Z
-    H --> |hủy| Z
 ```
 
 ## 📚 Cấu Trúc Dữ Liệu
