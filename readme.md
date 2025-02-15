@@ -115,7 +115,7 @@ sheet_id = "YOUR_SHEET_ID"
 7. Hiển thị menu chính
 
 ```mermaid
-fflowchart TB
+flowchart TB
     subgraph Left["LUỒNG CHÍNH"]
         direction TB
         subgraph Menu["MENU CHÍNH"]
