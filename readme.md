@@ -125,6 +125,7 @@ flowchart TB
         end
 
         subgraph Actions["Hành Động"]
+            direction TB
             G --> |1 ca| H[Xác nhận]
             G --> |Nhiều ca| I[Chọn ca]
             I --> H
@@ -207,3 +208,4 @@ MIT License - Xem [LICENSE](LICENSE) để biết thêm chi tiết
   Made with ❤️ by Shyn
   <img src="https://i.imgur.com/dBaSKWF.gif" height="20" width="100%">
 </div>
+
